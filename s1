@@ -1,0 +1,5 @@
+redis.call('flushall')
+local m1 = string.match(redis.call('info','memory'),'used_memory:(%d+)');
+for i = 11000000000,11001500000 do redis.call('set','a'..i,i) end
+local m2 = string.match(redis.call('info','memory'),'used_memory:(%d+)');
+return m2 - m1
